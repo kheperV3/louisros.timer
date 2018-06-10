@@ -5,7 +5,7 @@ import ConfigParser
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 import io
-
+import os
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
 
@@ -29,8 +29,10 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 
 def action_wrapper(hermes, intentMessage, conf):
+    v = int(intentMessage.slots.valeur.first().value) * 60
+    os.system("/home/pi/alarm" + " " + str(v)+"&")
     current_session_id = intentMessage.session_id
-    hermes.publish_end_session(current_session_id, "c'est fait Monsieur")
+    hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
 
 
 if __name__ == "__main__":
