@@ -35,6 +35,8 @@ def action_wrapper(hermes, intentMessage, conf):
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
 
+    
+    
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
