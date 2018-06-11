@@ -31,7 +31,7 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 def action_wrapper(hermes, intentMessage, conf):
     v = int(intentMessage.slots.valeur.first().value) * 60
-    with io.open('/home/pi/timeForAlarm', mode='w') as f:
+    with io.open('/home/pi/alarm', mode='w') as f:
       f.write(str(v))
       f.close()
       
