@@ -38,7 +38,7 @@ def action_wrapper(hermes, intentMessage, conf):
     except(IOError) as e:
             hermes.publish_end_session(current_session_id, "désolé nous avons un problème")
     """
-    os.system("echo " + str(v) + " >/home/pi/timeForAlarm")
+    os.system("alarm " + str(v) + "&")
       
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
