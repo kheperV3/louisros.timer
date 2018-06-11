@@ -31,10 +31,10 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 def action_wrapper(hermes, intentMessage, conf):
     v = int(intentMessage.slots.valeur.first().value) * 60
-    """with io.open('/home/pi/timeForAlarm', mode='w') as f:
+    with io.open('/home/pi/timeForAlarm', mode='w') as f:
       f.write(str(v))
       f.close()
-      """
+      
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
 
