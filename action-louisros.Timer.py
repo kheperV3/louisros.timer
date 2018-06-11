@@ -31,7 +31,7 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 def action_wrapper(hermes, intentMessage, conf):
     v = int(intentMessage.slots.valeur.first().value) * 60
-    os.system('sudo /usr/bin/alarm ' + str(v) + '&')
+    os.system('/usr/bin/alarm ' + str(v) + '&')
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
 
