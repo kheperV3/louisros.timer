@@ -29,7 +29,7 @@ def subscribe_intent_callback(hermes, intentMessage):
     action_wrapper(hermes, intentMessage, conf)
               
 def settimer_callback(hermes, intentMessage):
-    conf = read_configuration_file(CONFIG_INI)
+  
     v = int(intentMessage.slots.valeur.first().value) * 60   
     os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")      
     current_session_id = intentMessage.session_id
