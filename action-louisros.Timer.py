@@ -24,9 +24,17 @@ def read_configuration_file(configuration_file):
     except (IOError, ConfigParser.Error) as e:
         return dict()
 
-def subscribe_intent_callback1(hermes, intentMessage):
+def subscribe_intent_callback(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
-    action_wrapper1(hermes, intentMessage, conf)
+    if intentMessage.intent.intent_name == 'settimer' :
+        v = int(intentMessage.slots.valeur.first().value) * 60    
+        os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")    
+        current_session_id = intentMessage.session_id
+        hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
+    if intentMessage.intent.intent_name == 'stoptimer':
+        os.system("rm /var/lib/snips/skills/timeForAlarm")      
+        current_session_id = intentMessage.session_id
+        hermes.publish_end_session(current_session_id, "c'est fait le rappel est supprimé")
     
 def subscribe_intent_callback2(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
@@ -49,7 +57,6 @@ def action_wrapper2(hermes, intentMessage, conf):
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("louisros:settimer", subscribe_intent_callback1) \
+        h.subscribe_intents(subscribe_intent_callback) \
 .start()
-        h.subscribe_intent("louisros:stoptimer", subscribe_intent_callback2) \
-.start()
+       
