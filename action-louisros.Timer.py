@@ -26,11 +26,11 @@ def read_configuration_file(configuration_file):
 
 def subscribe_intent_callback1(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
-    action_wrapper(hermes, intentMessage, conf)
+    action_wrapper1(hermes, intentMessage, conf)
     
 def subscribe_intent_callback2(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
-    action_wrapper(hermes, intentMessage, conf)
+    action_wrapper2(hermes, intentMessage, conf)
 
 def action_wrapper1(hermes, intentMessage, conf):
     v = int(intentMessage.slots.valeur.first().value) * 60
