@@ -36,7 +36,7 @@ def settimer_callback(hermes, intentMessage):
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
     
 def stoptimer_callback(hermes, intentMessage):  
-    conf = read_configuration_file(CONFIG_INI)
+
     os.system("rm /var/lib/snips/skills/timeForAlarm")      
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait le rappel est supprimé")
