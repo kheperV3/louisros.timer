@@ -32,10 +32,8 @@ def settimer_callback(hermes, intentMessage):
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
               
 def action_wrapper(hermes, intentMessage, conf):
-    v = int(intentMessage.slots.valeur.first().value) * 60
-    
-    os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")
-      
+    v = int(intentMessage.slots.valeur.first().value) * 60   
+    os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")      
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
     
@@ -49,7 +47,6 @@ def stoptimer_callback(hermes, intentMessage):
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("louisros:settimer",settimer_callback)\
-        .subscribe_intent("louisros:stoptimer",stoptimer_callback)\
-        .start()
+        h.subscribe_intent("louisros:settimer",settimer_callback).start
+     
        
