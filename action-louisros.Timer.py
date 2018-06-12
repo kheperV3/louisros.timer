@@ -45,6 +45,7 @@ def stoptimer_callback(hermes, intentMessage):
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("louisros:settimer",settimer_callback).start()
-        h.subscribe_intent("louisros:stoptimer",stoptimer_callback).start()
+        h\
+        .subscribe_intent("louisros:settimer",settimer_callback)\
+        .subscribe_intent("louisros:stoptimer",stoptimer_callback).start()
        
