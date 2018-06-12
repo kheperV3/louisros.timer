@@ -24,7 +24,7 @@ def read_configuration_file(configuration_file):
     except (IOError, ConfigParser.Error) as e:
         return dict()
 
-def subcribe_intent_callback(hermes, intentMessage):
+def subscribe_intent_callback(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
     action_wrapper(hermes, intentMessage, conf)
               
@@ -44,6 +44,6 @@ def stoptimer_callback(hermes, intentMessage):
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("louisros:settimer",subcribe_intent_callback).start()
+        h.subscribe_intent("louisros:settimer",subscribe_intent_callback).start()
      
        
