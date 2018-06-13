@@ -32,7 +32,7 @@ def settimer_callback(hermes, intentMessage):
   
     v = int(intentMessage.slots.valeur.first().value) * 60 
     
-    os.system("sudo echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")  
+    os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")  
     os.system("sudo echo 25 >/sys/class/gpio/export")
     os.system("sudo echo out >/sys/class/gpio/gpio25/direction")
     os.system("sudo echo 1 >/sys/class/gpio/gpio25/value")
