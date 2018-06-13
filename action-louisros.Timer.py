@@ -31,13 +31,17 @@ def subscribe_intent_callback(hermes, intentMessage):
 def settimer_callback(hermes, intentMessage):
   
     v = int(intentMessage.slots.valeur.first().value) * 60   
-    os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")      
+    os.system("echo " + str(v) + " >/var/lib/snips/skills/timeForAlarm")  
+    os.system("echo 25 >/sys/class/gpio/export")
+    os.system("echo out >/sys/class/gpio/gpio25/direction")
+    os.system("echo 1 >/sys/class/gpio/gpio25/value")
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait cher Maître")
     
 def stoptimer_callback(hermes, intentMessage):  
-
-    os.system("rm /var/lib/snips/skills/timeForAlarm")      
+    os.system("echo 25 >/sys/class/gpio/unexport")
+    os.system("rm /var/lib/snips/skills/timeForAlarm")   
+    
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, "c'est fait le rappel est supprimé")
     
